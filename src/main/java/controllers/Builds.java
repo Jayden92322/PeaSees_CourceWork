@@ -83,14 +83,16 @@ public class Builds{
         System.out.println("Invoked Parts.buildPartsList()");
         JSONArray response = new JSONArray();
         try {
-            PreparedStatement ps = Main.db.prepareStatement("SELECT Parts.PartID, PartDescription, CategoryID FROM Parts INNER JOIN Builds B on Parts.PartID = B.PartID WHERE BuildID=?");
+            PreparedStatement ps = Main.db.prepareStatement("SELECT Parts.PartID, PartDescription, CategoryID, Price FROM Parts INNER JOIN Builds B on Parts.PartID = B.PartID WHERE BuildID=?");
             ps.setInt(1,buildID);
             ResultSet results = ps.executeQuery();
             while (results.next()) {
                 JSONObject row = new JSONObject();
                 row.put("PartID", results.getInt(1));
                 row.put("PartDescription", results.getString(2));
-                PreparedStatement cat = Main.db.prepareStatement("SELECT Description FROM Categories WHERE CategoryID=?");
+                row.put("Price", results.getFloat(3));
+
+                PreparedStatement cat = Main.db.prepareStatement("SELECT Description FROM Parts WHERE CategoryID=?");
                 cat.setInt(1,results.getInt(3));
                 ResultSet rsCat = cat.executeQuery();
                 row.put("Category", rsCat.getString(1));
