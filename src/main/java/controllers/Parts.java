@@ -19,17 +19,22 @@ public class Parts{
     @Path("list")
     public String PartsList() {
         System.out.println("Invoked Parts.PartsList()");
-        JSONArray response = new JSONArray();
+        JSONArray parts = new JSONArray();
         try {
-            PreparedStatement ps = Main.db.prepareStatement("SELECT PartID, PartDescription, CategoryID FROM Parts");
+            PreparedStatement ps = Main.db.prepareStatement("SELECT PartID, ProductCode ,PartDescription, CategoryID, Price FROM Parts");
             ResultSet results = ps.executeQuery();
-            while (results.next()==true) {
+            while (results.next()) {
                 JSONObject row = new JSONObject();
                 row.put("PartID", results.getInt(1));
-                row.put("PartDescription", results.getString(2));
-                row.put("CategoryID", results.getInt(3));
-                response.add(row);
+                row.put("ProductCode",results.getString(2));
+                row.put("PartDescription", results.getString(3));
+                row.put("CategoryID", results.getInt(4));
+                row.put("Price",results.getInt(5));
+                parts.add(row);
             }
+            JSONObject response = new JSONObject();
+            response.put("parts",parts);
+            System.out.println(response.toString());
             return response.toString();
         } catch (Exception exception) {
             System.out.println("Database error: " + exception.getMessage());
@@ -74,4 +79,6 @@ public class Parts{
         }
 
     }
+
+
 }

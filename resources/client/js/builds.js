@@ -1,8 +1,7 @@
 "use strict";
-
 function getBuildsList() {
     //debugger;
-    console.log("Invoked getBuildsList()");     //console.log your BFF for debugging client side - also use debugger statement
+    console.log("Invoked getPartsList()");     //console.log your BFF for debugging client side - also use debugger statement
 
     const url = "/Builds/list";    		// API method on web server will be in Users class, method list
     fetch(url, {
@@ -23,13 +22,6 @@ function getBuildsList() {
         }
     });
 }
-function formatBuildsList(myJSONArray){
-    let dataHTML = "";
-    for (let item of myJSONArray) {
-        dataHTML += "<tr><td>" + item.BuildID + "<td><td>" + item.Title + "<tr><td>" + item.PartID + "<tr><td>" + item.Price + "<tr><td>";
-    }
-    document.getElementById("PartsTable").innerHTML = dataHTML;
-}
 function getBuildParts(id){
     let formData = new FormData();
     formData.append("buildID", id);
@@ -43,9 +35,9 @@ function getBuildParts(id){
         if (response.hasOwnProperty("Error")) { //checks if response from the web server has an "Error"
             alert(JSON.stringify(response));    // if it does, convert JSON object to string and alert (pop up window)
         } else {
-            let dataHTML = `Parts<br><table><tr><th>Part ID</th><th>Description</th><th>Category</th></tr><tr><th>Price</th><th>`;
+            let dataHTML = `Parts<br><table><tr><th>Part ID</th><th>Description</th><th>Category</th></tr>`;
             for (let part of response.parts) {
-                dataHTML += `<tr><td>${part.PartID}</td><td>${part.PartDescription}</td><td>${part.Category}</td><td>${part.Price}</td><td>`;
+                dataHTML += `<tr><td>${part.PartID}</td><td>${part.PartDescription}</td><td>${part.Category}</td>`;
             }
             dataHTML += `</table><button onclick="clearPage()">Clear</button>`
             document.getElementById("partsList").innerHTML = dataHTML;

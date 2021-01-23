@@ -18,7 +18,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        openDatabase("Client/PeaSees.db");
+        openDatabase("PeaSees.db");
 
 
         ResourceConfig config = new ResourceConfig();
