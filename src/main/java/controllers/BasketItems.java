@@ -55,12 +55,6 @@ public class BasketItems{
             PreparedStatement user = Main.db.prepareStatement("SELECT UserID FROM Users WHERE Token=?");
             user.setString(1,token);
             ResultSet rs = user.executeQuery();
-            //PreparedStatement basket = Main.db.prepareStatement("INSERT INTO Baskets(UserID, DateAdded) VALUES(?,?)");
-            //basket.setInt(1,rs.getInt(1));
-            //basket.setString(2, String.valueOf(java.time.LocalDate.now()));
-            //basket.executeUpdate();
-            //PreparedStatement basketID = Main.db.prepareStatement("SELECT BasketID FROM Baskets ORDER BY BasketID DESC LIMIT 1");
-            //ResultSet rsBasket = basketID.executeQuery();
             PreparedStatement ps = Main.db.prepareStatement("INSERT INTO BasketItems (PartID,Quantity) VALUES (?,?)");
             ps.setInt(1, ItemID);
             ps.setInt(2,Quantity);

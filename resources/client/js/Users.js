@@ -89,7 +89,7 @@ function UsersLogin() {
     });
 }
 function logout() {
-    console.log("Invoked logout");
+    window.open("Index.html", "_self");       //open index.html in same tab
     let url = "/users/logout";
     fetch(url, {method: "POST"
     }).then(response => {
@@ -101,7 +101,6 @@ function logout() {
             Cookies.remove("Token", response.Token);    //UserName and Token are removed
             Cookies.remove("UserName", response.UserName);
             console.log("Invoked logout");
-            window.location.href = "Index.html"
         }
     });
 }
