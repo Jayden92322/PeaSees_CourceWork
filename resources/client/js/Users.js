@@ -101,7 +101,7 @@ function logout() {
             Cookies.remove("Token", response.Token);    //UserName and Token are removed
             Cookies.remove("UserName", response.UserName);
             console.log("Invoked logout");
-            window.open("Index.html", "_self");       //open index.html in same tab
+            window.location.href = "Index.html"
         }
     });
 }

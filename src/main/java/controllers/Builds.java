@@ -52,6 +52,7 @@ public class Builds{
             if (results.next()== true) {
                 response.put("BuildID", BuildID);
                 response.put("Title", results.getString(1));
+                response.put("Title", results.getString(1));
             }
             return response.toString();
         } catch (Exception exception) {
@@ -92,7 +93,7 @@ public class Builds{
                 row.put("PartDescription", results.getString(2));
                 row.put("Price", results.getFloat(3));
 
-                PreparedStatement cat = Main.db.prepareStatement("SELECT Description FROM Parts WHERE CategoryID=?");
+                PreparedStatement cat = Main.db.prepareStatement("SELECT PartDescription FROM Parts WHERE CategoryID=?");
                 cat.setInt(1,results.getInt(3));
                 ResultSet rsCat = cat.executeQuery();
                 row.put("Category", rsCat.getString(1));
