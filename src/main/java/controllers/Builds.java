@@ -91,9 +91,10 @@ public class Builds{
                 JSONObject row = new JSONObject();
                 row.put("PartID", results.getInt(1));
                 row.put("PartDescription", results.getString(2));
-                row.put("Price", results.getFloat(3));
+                row.put("Price", results.getInt(4));
 
-                PreparedStatement cat = Main.db.prepareStatement("SELECT PartDescription FROM Parts WHERE CategoryID=?");
+
+                PreparedStatement cat = Main.db.prepareStatement("SELECT Description FROM Categories WHERE CategoryID=?");
                 cat.setInt(1,results.getInt(3));
                 ResultSet rsCat = cat.executeQuery();
                 row.put("Category", rsCat.getString(1));

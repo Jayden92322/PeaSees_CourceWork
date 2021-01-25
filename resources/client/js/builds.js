@@ -35,9 +35,9 @@ function getBuildParts(id){
         if (response.hasOwnProperty("Error")) { //checks if response from the web server has an "Error"
             alert(JSON.stringify(response));    // if it does, convert JSON object to string and alert (pop up window)
         } else {
-            let dataHTML = `Parts<br><table><tr><th>Part ID</th><th>Description</th><th>Category</th></tr>`;
+            let dataHTML = `Parts<br><table><tr><th>Part ID</th><th>Description</th><td>Price</td><th>Category</th></tr>`;
             for (let part of response.parts) {
-                dataHTML += `<tr><td>${part.PartID}</td><td>${part.PartDescription}</td><td>${part.Category}</td>`;
+                dataHTML += `<tr><td>${part.PartID}</td><td>${part.PartDescription}</td><td>£ ${part.Price}.00</td><td>${part.Category}</td>`;
             }
             dataHTML += `</table><button onclick="clearPage()">Clear</button>`
             document.getElementById("partsList").innerHTML = dataHTML;

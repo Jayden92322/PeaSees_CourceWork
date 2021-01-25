@@ -21,15 +21,18 @@ public class Parts{
         System.out.println("Invoked Parts.PartsList()");
         JSONArray parts = new JSONArray();
         try {
-            PreparedStatement ps = Main.db.prepareStatement("SELECT PartID, ProductCode ,PartDescription, CategoryID, Price FROM Parts");
+            PreparedStatement ps = Main.db.prepareStatement("SELECT PartID, PartDescription, CategoryID, Price FROM Parts");
             ResultSet results = ps.executeQuery();
             while (results.next()) {
                 JSONObject row = new JSONObject();
                 row.put("PartID", results.getInt(1));
-                row.put("ProductCode",results.getString(2));
-                row.put("PartDescription", results.getString(3));
-                row.put("CategoryID", results.getInt(4));
-                row.put("Price",results.getInt(5));
+                row.put("PartDescription", results.getString(2));
+                row.put("Price",results.getInt(4));
+
+                PreparedStatement cat = Main.db.prepareStatement("SELECT Description FROM Categories WHERE CategoryID=?");
+                cat.setInt(1,results.getInt(3));
+                ResultSet rsCat = cat.executeQuery();
+                row.put("Category", rsCat.getString(1));
                 parts.add(row);
             }
             JSONObject response = new JSONObject();

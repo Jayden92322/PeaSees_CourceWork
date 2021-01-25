@@ -7,7 +7,7 @@
     <title>Parts</title>
     <link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
-<body>
+<body onload="getPartsList()">
 <div class="topnav">
     <a href="http://localhost:8081/Client/Home.html">Home</a>
     <a class = "active" href="http://localhost:8081/Client/Part.html">Parts</a>
@@ -16,19 +16,11 @@
     <button onclick='logout();'>Logout</button>
 </div>
 <h1>Parts</h1>
-<button onclick='getPartsList();'>Run PartsList </button>
 <table id="PartsTable"></table>
 
 
 
-<div class="card">
-    <a href="http://localhost:8081/Client/GPU.html"><img alt="GPUs" src="img/GPUlogo.png" width="250" height="200"></a>
-    <h1>GPU's</h1>
-</div>
-<div class="card">
-    <a href="http://localhost:8081/Client/CPU.html"><img  alt="CPUs" src="img/CPUlogo.png" width="250" height="200"></a>
-    <h1>CPU's</h1>
-</div>
+
 
 
 </body>

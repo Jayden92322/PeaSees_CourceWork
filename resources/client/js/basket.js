@@ -14,7 +14,7 @@ function showBasket(){
             // displays items as a table, creating it based on the results from the API
             let dataHTML = `Parts<br><table><tr><th>Description</th><th>Quantity</th><th>Price</th><td>Unit Total</td></tr>`;
             for (let part of response.Items) {
-                dataHTML += `<tr id="${part.PartID}"><td>${part.Description}</td><td>${part.Quantity}</td><td>${part.Price}</td><td>`+(part.Quantity*part.Price)+`</td><td><button onclick="deleteItem(${part.PartID})">Remove</button></td>`;
+                dataHTML += `<tr id="${part.PartID}"><td>${part.Description}</td><td>${part.Quantity}</td><td>£ ${part.Price}.00</td><td>£ `+(part.Quantity*part.Price)+`.00</td><td><button onclick="deleteItem(${part.PartID})">Remove</button></td>`;
             }
             dataHTML += `</table><button onclick="clearPage()">Clear</button><button onclick="buyNow()">Buy Now</button>`
             document.getElementById("items").innerHTML = dataHTML;
