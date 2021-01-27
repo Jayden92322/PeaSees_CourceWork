@@ -84,10 +84,13 @@ function UsersLogin() {
         } else {
             Cookies.set("Token", response.Token);
             Cookies.set("UserName", response.UserName);
-            window.open("Home.html", "_self");       //open index.html in same tab
+            window.open("Home.html", "_self");       //open Home.html in same tab
         }
     });
 }
+
+response.Token = undefined;
+
 function logout() {
     window.open("Index.html", "_self");       //open index.html in same tab
     let url = "/users/logout";
@@ -98,6 +101,7 @@ function logout() {
         if (response.hasOwnProperty("Error")) {
             alert(JSON.stringify(response));        // if it does, convert JSON object to string and alert
         } else {
+            let Cookies;
             Cookies.remove("Token", response.Token);    //UserName and Token are removed
             Cookies.remove("UserName", response.UserName);
             console.log("Invoked logout");

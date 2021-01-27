@@ -58,39 +58,16 @@ function buyNow(){
         }
     });
 }
-
-function deleteItem(partID){
-    console.log("Invoked deleteItem()");
-    let url = "/Baskets/removeItem/";
-    let itemData = new FormData();
-    itemData.append("PartID",partID)
-    fetch(url, {
-        method: "POST",				//Get method
-        body: itemData,
-    }).then(response => {
-        return response.json();                 //return response as JSON
-    }).then(response => {
-        if (response.hasOwnProperty("Error")) { //checks if response from the web server has an "Error"
-            alert(JSON.stringify(response));    // if it does, convert JSON object to string and alert (pop up window)
-        } else {
-            alert(JSON.stringify(response));
-            showBasket();
-        }
-    })
-}
-
-function buyNow(){
-    let url = "/Baskets/buyNow"
+function clearPage(){
+    let url = "/Baskets/clearPage"
     fetch(url, {
         method: "get",
     }).then(response => {
         return response.json();
     }).then(response => {
-        if(response.hasOwnProperty("Error")){
-            alert(JSON.stringify(response));
-        }else{
-            alert(JSON.stringify(response));
+
             showBasket();
-        }
+
     });
 }
+
